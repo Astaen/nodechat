@@ -198,7 +198,7 @@ io.sockets.on('connection', function(socket) {
 
 		} else if(message.message != '' && message.message.replace(/ /g,"").replace(/ /g,"") != '') { //message isn't empty and doesn't contain only spaces
 			
-			message = generateMsg(message.message); //generate message object
+			message = generateMsg(message.message,0); //generate message object
 
 			var diff = Math.abs(message.date - last_message.date); // time difference since last message was posted
 			if(last_message.user == me && last_message.m == message.m && diff < 10000) { //last message was posted less than 10 seconds ago by same user as current
@@ -260,8 +260,12 @@ io.sockets.on('connection', function(socket) {
 		}
 
 		var obj = {};
-		obj.message = escape(message);
-		obj.message = urlify(message);
+		if(mode == 0 || mode == 1) {
+			obj.message = escape(message);
+		} else {
+			obj.message = message;
+		}
+		obj.message = urlify(obj.message);
 		obj.media = media.parse(message); //check message for youtube links, imgur, and more, media's attributes can be used to embed each media (see mediaparser for return values)
 		obj.user = me; //current user informations are stored in every message
 		obj.date = new Date();
