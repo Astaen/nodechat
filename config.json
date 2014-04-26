@@ -1,0 +1,15 @@
+{ 
+	"bdd": {
+	"username" : "root",
+	"password" : "",
+	"database" : "nodechat",
+	"host" : "localhost"
+	},
+	"mail": {
+	"host" : "changeme",
+	"port" : "changeme",
+	"user" : "changeme@changeme.changeme",
+	"password" : "changeme"
+	}	
+
+}
